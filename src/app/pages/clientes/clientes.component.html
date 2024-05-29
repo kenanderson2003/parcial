@@ -1,0 +1,69 @@
+<header>
+    <div class="container">
+        <h1>Clientes</h1>
+    </div>
+</header>
+<section class="padded">
+    <div class="container">
+
+        <div class="mb-3">
+            <label class="form-label">Buscar Cliente</label>
+            <input type="text" class="form-control" [(ngModel)] = "clientesFilter.empresa"
+            placeholder="Escriba el nombre de la empresa">
+        </div>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                <th (click)="setOrder('empresa')" [class.order-active] = "order === 'empresa'">
+                <span [hidden]="!reversa"><i class="bi bi-chevron-down"></i></span>
+                <span [hidden]="reversa"> <i class="bi bi-chevron-up"></i></span>Empresa</th>
+
+                <th (click)="setOrder('nombres')" [class.order-active] = "order === 'nombres'">
+                <span [hidden]="!reversa"><i class="bi bi-chevron-down"></i></span>
+                <span [hidden]="reversa"> <i class="bi bi-chevron-up"></i></span>Nombres</th>
+                
+                <th (click)="setOrder('cargo')" [class.order-active] = "order === 'cargo'">
+                <span [hidden]="!reversa"><i class="bi bi-chevron-down"></i></span>
+                <span [hidden]="reversa"> <i class="bi bi-chevron-up"></i></span>Cargo</th>
+
+                <th (click)="setOrder('direccion')" [class.order-active] = "order === 'direccion'">
+                <span [hidden]="!reversa"><i class="bi bi-chevron-down"></i></span>
+                <span [hidden]="reversa"> <i class="bi bi-chevron-up"></i></span>Direccion</th>
+
+                <th (click)="setOrder('ciudad')" [class.order-active] = "order === 'ciudad'">
+                <span [hidden]="!reversa"><i class="bi bi-chevron-down"></i></span>
+                <span [hidden]="reversa"> <i class="bi bi-chevron-up"></i></span>Ciudad</th>
+
+                <th (click)="setOrder('pais')" [class.order-active] = "order === 'pais'">
+                <span [hidden]="!reversa"><i class="bi bi-chevron-down"></i></span>
+                <span [hidden]="reversa"> <i class="bi bi-chevron-up"></i></span>Pais</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listaClientes | filterBy:clientesFilter |orderBy:order :reversa | paginate:{itemsPerPage: 10, currentPage: p}">
+                    <td>
+                        {{item.empresa}}
+                    </td>
+                    <td>
+                        {{item.nombres}}
+                    </td>
+                    <td>
+                        {{item.cargo}}
+                    </td>
+                    <td>
+                        {{item.direccion}}
+                    </td>
+                    <td>
+                        {{item.ciudad}}
+                    </td>
+                    <td>
+                        {{item.pais}}
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </div>
+</section>

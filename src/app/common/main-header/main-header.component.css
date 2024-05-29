@@ -1,0 +1,17 @@
+#main-header{
+    background-color: var(--color-gris-claro);
+    color: var(--color-gris-oscuro);
+
+}
+#main-header p{
+    margin-bottom: 0 ;
+}
+#titulo{
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+.container {
+    text-align: center;
+  }
